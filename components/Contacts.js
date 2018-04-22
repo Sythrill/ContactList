@@ -1,15 +1,17 @@
-var Contacts = React.createClass({
-  propTypes: {
-    items: React.PropTypes.array.isRequired,
-  },
+class Contacts extends React.Component {
+    render() {
+        var contacts;
+        contacts = this.props.items.map(function (contact) {
+            return <Contact item={contact} key={contact.id}/>
+        });
 
-  render: function() {
-    var contacts = this.props.items.map(function(contact) {
-        return React.createElement(Contact, {item: contact, key: contact.id});
-    });
+        return (
+            <ul className="contactList">{contacts}</ul>
+        )
 
-    return (
-      React.createElement('ul', {className: 'contactsList'}, contacts)
-    );
-  }
-});
+    }
+}
+
+Contacts.propTypes = {
+    items: React.PropTypes.array.isRequired
+};
